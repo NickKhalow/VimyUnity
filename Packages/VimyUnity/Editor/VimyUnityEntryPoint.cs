@@ -4,12 +4,12 @@ using UnityEngine;
 namespace VimyUnity.Editor
 {
     [InitializeOnLoad]
-    public static class VimyUnityWindowsEntryPoint
+    public static class VimyUnityEntryPoint
     {
         private const string ToolsPath = "Tools/Vimy/";
         private static readonly IWindowsFocus WindowsFocus;
 
-        static VimyUnityWindowsEntryPoint()
+        static VimyUnityEntryPoint()
         {
             WindowsFocus = new WindowsFocus();
         }
