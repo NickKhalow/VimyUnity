@@ -4,6 +4,8 @@ namespace VimyUnity.Editor
     {
         void FocusOn(FocusType type);
 
+        void CloseCurrent();
+
         enum FocusType
         {
             Next,

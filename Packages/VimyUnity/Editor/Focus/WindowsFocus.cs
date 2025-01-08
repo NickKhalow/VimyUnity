@@ -37,6 +37,11 @@ namespace VimyUnity.Editor
             }
         }
 
+        public void CloseCurrent()
+        {
+            EditorWindow.focusedWindow?.Close();
+        }
+
         private static void FocusByIndexOffset(int offset)
         {
             var windows = Windows();
@@ -46,8 +51,9 @@ namespace VimyUnity.Editor
             {
                 desiredFocus += windows.Count;
             }
+
             var index = desiredFocus % windows.Count;
-            windows[index].Focus();
+            windows[index]!.Focus();
         }
 
         private static void FocusByDirection(Vector2 direction)
@@ -85,12 +91,13 @@ namespace VimyUnity.Editor
                 if (windows[i] == activeWindow)
                     return i;
             }
+
             throw new Exception("Doesn't have a focused window!");
         }
 
         private static IReadOnlyList<EditorWindow> Windows()
         {
-            return Resources.FindObjectsOfTypeAll<EditorWindow>();
+            return Resources.FindObjectsOfTypeAll<EditorWindow>()!;
         }
     }
 }

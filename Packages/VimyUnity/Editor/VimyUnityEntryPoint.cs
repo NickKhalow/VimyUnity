@@ -7,6 +7,7 @@ namespace VimyUnity.Editor
     public static class VimyUnityEntryPoint
     {
         private const string ToolsPath = "Tools/Vimy/";
+
         private static readonly IWindowsFocus WindowsFocus;
 
         static VimyUnityEntryPoint()
@@ -17,7 +18,7 @@ namespace VimyUnity.Editor
         [MenuItem(ToolsPath + nameof(ActiveWindowsCount))]
         private static void ActiveWindowsCount()
         {
-            var windows = Resources.FindObjectsOfTypeAll<EditorWindow>();
+            var windows = Resources.FindObjectsOfTypeAll<EditorWindow>()!;
             var index = 0;
             Debug.Log($"Total active windows: {windows.Length}");
             foreach (var w in windows)
@@ -60,6 +61,12 @@ namespace VimyUnity.Editor
         private static void SwitchLeft()
         {
             WindowsFocus.FocusOn(IWindowsFocus.FocusType.Left);
+        }
+
+        [MenuItem(ToolsPath + nameof(CloseCurrentWindow) + " #x")]
+        private static void CloseCurrentWindow()
+        {
+            WindowsFocus.CloseCurrent();
         }
     }
 }
