@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,17 +8,7 @@ namespace VimyUnity.Editor
 {
     public class WindowsFocus : IWindowsFocus
     {
-        private const float Stickness = 0.7f;
-
-
-        private enum Direction
-        {
-            Up,
-            Down,
-            Right,
-            Left
-        }
-
+        private const float Threshold = 0.7f;
 
         public void FocusOn(IWindowsFocus.FocusType type)
         {
@@ -30,16 +21,16 @@ namespace VimyUnity.Editor
                     FocusByIndexOffset(-1);
                     break;
                 case IWindowsFocus.FocusType.Up:
-                    FocusByDirection(Direction.Up);
+                    FocusByDirection(Vector2.up);
                     break;
                 case IWindowsFocus.FocusType.Down:
-                    FocusByDirection(Direction.Down);
+                    FocusByDirection(Vector2.down);
                     break;
                 case IWindowsFocus.FocusType.Right:
-                    FocusByDirection(Direction.Right);
+                    FocusByDirection(Vector2.right);
                     break;
                 case IWindowsFocus.FocusType.Left:
-                    FocusByDirection(Direction.Left);
+                    FocusByDirection(Vector2.left);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -59,24 +50,31 @@ namespace VimyUnity.Editor
             windows[index].Focus();
         }
 
-        private static void FocusByDirection(Direction direction)
+        private static void FocusByDirection(Vector2 direction)
         {
             var windows = Windows();
             var focusedWindow = EditorWindow.focusedWindow;
             var rect = focusedWindow.position;
-            switch (direction)
+            var currentCenter = rect.center;
+
+            var candidate = windows.Where(w => IsInDirection(w.position.center, currentCenter, direction))
+                .OrderBy(w => Vector2.Distance(w.position.center, rect.center))
+                .FirstOrDefault();
+
+            if (candidate == null)
             {
-                case Direction.Up:
-                    break;
-                case Direction.Down:
-                    break;
-                case Direction.Right:
-                    break;
-                case Direction.Left:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+                Debug.LogWarning("Next window to switch is not found");
+                return;
             }
+
+            candidate.Focus();
+        }
+
+        private static bool IsInDirection(Vector2 targetCenter, Vector2 currentCenter, Vector2 direction)
+        {
+            var delta = targetCenter - currentCenter;
+            var dot = Vector2.Dot(delta.normalized, direction);
+            return dot > Threshold;
         }
 
         private static int CurrentFocusId(IReadOnlyList<EditorWindow> windows)
