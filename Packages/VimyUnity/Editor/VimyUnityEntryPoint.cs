@@ -26,37 +26,37 @@ namespace VimyUnity.Editor
             }
         }
 
-        [MenuItem(ToolsPath + nameof(SwitchNext))]
+        [MenuItem(ToolsPath + nameof(SwitchNext) + " _n")]
         private static void SwitchNext()
         {
             WindowsFocus.FocusOn(IWindowsFocus.FocusType.Next);
         }
 
-        [MenuItem(ToolsPath + nameof(SwitchPrevious))]
+        [MenuItem(ToolsPath + nameof(SwitchPrevious) + " #n")]
         private static void SwitchPrevious()
         {
             WindowsFocus.FocusOn(IWindowsFocus.FocusType.Previous);
         }
 
-        [MenuItem(ToolsPath + nameof(SwitchUp))]
+        [MenuItem(ToolsPath + nameof(SwitchUp) + " #k")]
         private static void SwitchUp()
         {
             WindowsFocus.FocusOn(IWindowsFocus.FocusType.Up);
         }
 
-        [MenuItem(ToolsPath + nameof(SwitchDown))]
+        [MenuItem(ToolsPath + nameof(SwitchDown) + " #j")]
         private static void SwitchDown()
         {
             WindowsFocus.FocusOn(IWindowsFocus.FocusType.Down);
         }
 
-        [MenuItem(ToolsPath + nameof(SwitchRight))]
+        [MenuItem(ToolsPath + nameof(SwitchRight) + " #l")]
         private static void SwitchRight()
         {
             WindowsFocus.FocusOn(IWindowsFocus.FocusType.Right);
         }
 
-        [MenuItem(ToolsPath + nameof(SwitchLeft))]
+        [MenuItem(ToolsPath + nameof(SwitchLeft) + " #h")]
         private static void SwitchLeft()
         {
             WindowsFocus.FocusOn(IWindowsFocus.FocusType.Left);
