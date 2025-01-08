@@ -1,6 +1,6 @@
 {
     "name": "VimyUnity.Editor",
-    "rootNamespace": "",
+    "rootNamespace": "VimyUnity.Editor",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
