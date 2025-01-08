@@ -1,0 +1,17 @@
+{
+  "name": "com.nickkhalow.vimyunity",
+  "version": "0.0.1",
+  "displayName": "VimyUnity",
+  "description": "Vim experience inside your Unity Editor",
+  "unity": "2019.1",
+  "keywords": [
+    "vim",
+    "shortcuts",
+    "hotkeys"
+  ],
+  "author": {
+    "name": "Nick Khalow",
+    "url": "https://github.com/NickKhalow",
+    "email": "nickhalow@gmail.com"
+  }
+}
