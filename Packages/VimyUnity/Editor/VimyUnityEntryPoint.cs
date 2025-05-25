@@ -9,10 +9,12 @@ namespace VimyUnity.Editor
         private const string ToolsPath = "Tools/Vimy/";
 
         private static readonly IWindowsFocus WindowsFocus;
+        private static readonly IInspectorLock InspectorLock;
 
         static VimyUnityEntryPoint()
         {
             WindowsFocus = new WindowsFocus();
+            InspectorLock = new InspectorLock();
         }
 
         [MenuItem(ToolsPath + nameof(ActiveWindowsCount))]
@@ -67,6 +69,12 @@ namespace VimyUnity.Editor
         private static void CloseCurrentWindow()
         {
             WindowsFocus.CloseCurrent();
+        }
+
+        [MenuItem(ToolsPath + nameof(ToggleInspectorLock) + " %l")]
+        private static void ToggleInspectorLock()
+        {
+            InspectorLock.ToggleLock();
         }
     }
 }
