@@ -8,6 +8,8 @@
 - Next/Previous window switching using N and Shift + N
 - Close window using Shift + X
 
+- Lock/Unlock inspector window with CTRL+L hotkey
+
 Each keybinding can be customized in the default shortcuts menu
 
 ## Installation
